@@ -5,14 +5,13 @@ const Hero2 = () => {
     <section
       style={{
         width: '100vw',
-        minHeight: '100vh',
         background: '#fff',
-        padding: '100px 48px 48px 48px',
+        padding: '80px 48px 40px 48px',
         boxSizing: 'border-box',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'flex-start',
-        gap: '3rem',
+        gap: '2.5rem',
         maxWidth: '1200px',
         margin: '0 auto',
       }}

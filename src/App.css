@@ -184,8 +184,8 @@ body {
 
   /* Hero2 Mobile Styles */
   .hero2-section {
-    padding: 80px 20px 40px 20px !important;
-    gap: 2rem !important;
+    padding: 60px 20px 30px 20px !important;
+    gap: 1.5rem !important;
     align-items: flex-start !important;
   }
 
@@ -218,6 +218,39 @@ body {
   .hero2-video {
     min-height: 250px !important;
     border-radius: 15px !important;
+  }
+
+  /* Hero3 Mobile Styles - ONLY APPLY ON MOBILE */
+  .hero3-section {
+    padding: 40px 15px 80px 15px !important;
+    min-height: 100vh !important;
+  }
+
+  /* No button styles needed - using absolute positioning */
+
+  .hero3-slider-container {
+    padding-left: 5px !important;
+    height: 320px !important;
+  }
+
+  .hero3-slider-track {
+    gap: 0.8rem !important;
+  }
+
+  .hero3-slider-item {
+    width: 85vw !important;
+    height: 300px !important;
+    padding: 1rem !important;
+  }
+
+  .hero3-slider-item:not(.hero3-slider-item:first-child) {
+    width: 65vw !important;
+    height: 260px !important;
+  }
+
+  /* Hide navigation controls on mobile */
+  .hero3-navigation {
+    display: none !important;
   }
 }
 
