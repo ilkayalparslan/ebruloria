@@ -226,34 +226,21 @@ const Hero3 = () => {
             display: 'flex',
             alignItems: 'center',
             gap: '1rem',
-            transform: `translateX(-${currentIndex * 350}px)`,
+            transform: `translateX(-${
+              currentIndex * (window.innerWidth * 0.7 + 16)
+            }px)`, // Dynamic calculation: 70vw + 1rem gap
             transition: 'transform 0.3s ease-out',
             width: 'fit-content',
           }}
         >
           {SLIDER_ITEMS.map((item, index) => {
             const isActive = index === currentIndex
-            const isVisible = index >= currentIndex && index <= currentIndex + 1
-
-            if (!isVisible) {
-              return (
-                <div
-                  key={item.id}
-                  style={{
-                    width: '340px',
-                    height: '320px',
-                    flexShrink: 0,
-                    visibility: 'hidden',
-                  }}
-                />
-              )
-            }
 
             return (
               <div
                 key={item.id}
                 style={{
-                  width: isActive ? '340px' : '280px',
+                  width: '70vw', // Fixed width for all cards
                   height: isActive ? '320px' : '280px',
                   background: '#333',
                   border: '1px solid #fff',
@@ -261,7 +248,7 @@ const Hero3 = () => {
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  opacity: isActive ? 1 : 0.8,
+                  opacity: isActive ? 1 : 0.7,
                   transform: `scale(${isActive ? 1 : 0.95})`,
                   transition: 'all 0.3s ease-in-out',
                   cursor: 'pointer',
@@ -282,6 +269,37 @@ const Hero3 = () => {
               </div>
             )
           })}
+
+          {/* Duplicate first card for seamless infinite scroll appearance */}
+          <div
+            style={{
+              width: '70vw',
+              height: currentIndex === 0 ? '320px' : '280px',
+              background: '#333',
+              border: '1px solid #fff',
+              borderRadius: '12px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              opacity: 0.7,
+              transform: 'scale(0.95)',
+              transition: 'all 0.3s ease-in-out',
+              cursor: 'pointer',
+              flexShrink: 0,
+            }}
+            onClick={() => setCurrentIndex(0)}
+          >
+            <h3
+              style={{
+                color: '#fff',
+                fontSize: '1.2rem',
+                fontWeight: '500',
+                fontFamily: 'Montserrat, sans-serif',
+              }}
+            >
+              {SLIDER_ITEMS[0].title}
+            </h3>
+          </div>
         </div>
       </div>
 

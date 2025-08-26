@@ -220,32 +220,29 @@ body {
     border-radius: 15px !important;
   }
 
-  /* Hero3 Mobile Styles - ONLY APPLY ON MOBILE */
+  /* Hero3 Mobile Styles - FIXED ALIGNMENT */
   .hero3-section {
-    padding: 40px 15px 80px 15px !important;
+    padding: 40px 10px 80px 10px !important;
     min-height: 100vh !important;
   }
 
-  /* No button styles needed - using absolute positioning */
-
   .hero3-slider-container {
-    padding-left: 5px !important;
+    padding-left: 0px !important;
     height: 320px !important;
+    width: 100% !important;
   }
 
   .hero3-slider-track {
-    gap: 0.8rem !important;
+    gap: 1rem !important;
   }
 
+  /* Force consistent mobile card sizing */
   .hero3-slider-item {
-    width: 85vw !important;
+    width: 70vw !important;
+    min-width: 70vw !important;
+    max-width: 70vw !important;
     height: 300px !important;
     padding: 1rem !important;
-  }
-
-  .hero3-slider-item:not(.hero3-slider-item:first-child) {
-    width: 65vw !important;
-    height: 260px !important;
   }
 
   /* Hide navigation controls on mobile */
