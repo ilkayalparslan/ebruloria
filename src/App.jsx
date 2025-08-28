@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import './App.css'
 import Layout from './components/common/Layout/Layout'
 import Header from './components/common/Header/Header'
@@ -21,18 +22,23 @@ function App() {
   }, [searchOpen])
 
   return (
-    <Layout>
-      <Header
-        searchOpen={searchOpen}
-        setSearchOpen={setSearchOpen}
-        searchValue={searchValue}
-        setSearchValue={setSearchValue}
-      />
+    <Router>
+      <Layout>
+        <Header
+          searchOpen={searchOpen}
+          setSearchOpen={setSearchOpen}
+          searchValue={searchValue}
+          setSearchValue={setSearchValue}
+        />
 
-      <Home />
+        <Routes>
+          <Route path='/' element={<Home />} />
+          {/* Add more routes as needed */}
+        </Routes>
 
-      <FloatingButtons />
-    </Layout>
+        <FloatingButtons />
+      </Layout>
+    </Router>
   )
 }
 

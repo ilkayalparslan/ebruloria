@@ -191,34 +191,62 @@ const Hero = () => {
           >
             <button
               onClick={prevSlide}
+              disabled={current === 0}
               style={{
                 padding: '1rem',
                 fontSize: '1.2rem',
                 borderRadius: '50%',
                 background: 'transparent',
-                color: '#fff',
+                color: current === 0 ? 'rgba(255, 255, 255, 0.3)' : '#fff',
                 border: '2px solid #fff',
                 outline: 'none',
                 fontWeight: 'bold',
-                cursor: 'pointer',
+                cursor: current === 0 ? 'not-allowed' : 'pointer',
                 transition: 'color 0.2s, background 0.2s',
+                opacity: current === 0 ? 0.3 : 1,
+              }}
+              onMouseEnter={(e) => {
+                if (current !== 0) {
+                  e.currentTarget.style.background = 'rgba(255, 255, 255, 0.1)'
+                }
+              }}
+              onMouseLeave={(e) => {
+                if (current !== 0) {
+                  e.currentTarget.style.background = 'transparent'
+                }
               }}
             >
               &#8592;
             </button>
             <button
               onClick={nextSlide}
+              disabled={current === SLIDES.length - 1}
               style={{
                 padding: '1rem',
                 fontSize: '1.2rem',
                 borderRadius: '50%',
                 background: 'transparent',
-                color: '#fff',
+                color:
+                  current === SLIDES.length - 1
+                    ? 'rgba(255, 255, 255, 0.3)'
+                    : '#fff',
                 border: '2px solid #fff',
                 outline: 'none',
                 fontWeight: 'bold',
-                cursor: 'pointer',
+                cursor:
+                  current === SLIDES.length - 1 ? 'not-allowed' : 'pointer',
                 transition: 'color 0.2s, background 0.2s',
+                opacity: current === SLIDES.length - 1 ? 0.3 : 1,
+              }}
+              onMouseEnter={(e) => {
+                if (current !== SLIDES.length - 1) {
+                  e.currentTarget.style.background = 'rgba(255, 255, 255, 0.1)'
+                }
+              }}
+              onMouseLeave={(e) => {
+                if (current !== SLIDES.length - 1) {
+                  e.currentTarget.style.background = 'transparent'
+                }
               }}
             >
               &#8594;

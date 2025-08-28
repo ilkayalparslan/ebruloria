@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const Hero2 = () => {
   return (
@@ -47,7 +48,8 @@ const Hero2 = () => {
           ince düşünülmüş yaşam alanları tasarlıyoruz.
         </h2>
 
-        <button
+        <Link
+          to='/discoveries'
           style={{
             padding: '1.2rem 3rem',
             fontSize: '1.2rem',
@@ -66,6 +68,7 @@ const Hero2 = () => {
             whiteSpace: 'nowrap',
             fontFamily: 'Montserrat, sans-serif',
             alignSelf: 'flex-start',
+            textDecoration: 'none',
           }}
           className='hero2-button'
           onMouseEnter={(e) => {
@@ -79,7 +82,7 @@ const Hero2 = () => {
         >
           Keşfet
           <span style={{ fontSize: '1.3rem' }}>→</span>
-        </button>
+        </Link>
       </div>
 
       {/* Video */}
