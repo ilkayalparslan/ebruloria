@@ -80,6 +80,11 @@ body {
   }
 }
 
+/* Project Card Hover Effects */
+.project-card:hover .project-overlay {
+  opacity: 1 !important;
+}
+
 /* Mobile Responsive Styles */
 @media (max-width: 768px) {
   /* Hide desktop vertical buttons on mobile */
@@ -431,6 +436,42 @@ body {
     margin-bottom: 2rem !important; /* Ensure space at bottom */
   }
 
+  /* Projects Page Mobile Styles - Mobile First */
+  .projects-grid {
+    grid-template-columns: 1fr !important;
+    gap: 20px !important;
+    padding: 0 !important;
+  }
+
+  .project-card {
+    margin: 0 !important;
+    height: auto !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1) !important;
+  }
+
+  .project-card:active {
+    transform: scale(0.98) !important;
+  }
+
+  /* Projects Page Mobile Header - Stacked Layout */
+  .projects-mobile-header {
+    padding: 15px 20px 20px 20px !important;
+    min-height: 85px !important;
+  }
+
+  .projects-mobile-search {
+    width: 100% !important;
+    max-width: 300px !important;
+    padding: 10px 15px !important;
+    border: 2px solid rgba(255, 255, 255, 0.3) !important;
+    margin: 0 auto !important;
+  }
+
+  .projects-mobile-search:focus-within {
+    border-color: rgba(255, 255, 255, 0.6) !important;
+    background: rgba(255, 255, 255, 0.15) !important;
+  }
+
   /* Footer Mobile Styles - COMPLETE VERTICAL STACKING */
   .footer-section {
     padding: 40px 20px 30px 20px !important;
@@ -499,6 +540,42 @@ body {
   .footer-legal a {
     text-align: center !important;
     display: block !important;
+  }
+}
+
+/* Tablet Responsive Styles */
+@media (max-width: 1024px) and (min-width: 769px) {
+  .projects-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 1.5rem !important;
+  }
+}
+
+/* Desktop Styles for Projects */
+@media (min-width: 769px) {
+  .projects-grid {
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 2rem !important;
+  }
+
+  .project-card {
+    height: 400px !important;
+  }
+
+  .project-card:hover {
+    transform: translateY(-10px) scale(1.02) !important;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2) !important;
+  }
+
+  .projects-desktop-header {
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+  }
+
+  .projects-desktop-search {
+    margin: 0 15px !important;
+    max-width: 250px !important;
   }
 }
 

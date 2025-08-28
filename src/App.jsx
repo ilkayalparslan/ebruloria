@@ -4,7 +4,9 @@ import './App.css'
 import Layout from './components/common/Layout/Layout'
 import Header from './components/common/Header/Header'
 import Home from './pages/Home'
+import Projects from './pages/Projects'
 import FloatingButtons from './components/ui/FloatingButtons/FloatingButtons'
+import ProjectDetail from './pages/ProjectDetail'
 
 function App() {
   const [searchOpen, setSearchOpen] = useState(false)
@@ -33,6 +35,8 @@ function App() {
 
         <Routes>
           <Route path='/' element={<Home />} />
+          <Route path='/projects' element={<Projects />} />
+          <Route path='/projects/:slug' element={<ProjectDetail />} />
           {/* Add more routes as needed */}
         </Routes>
 
