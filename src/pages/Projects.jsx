@@ -127,7 +127,7 @@ const Projects = () => {
 
   return (
     <div style={{ width: '100%', minHeight: '100vh' }}>
-      {/* Mobile-First Header - Updated Layout */}
+      {/* Fixed Header Layout */}
       <header
         style={{
           position: 'fixed',
@@ -135,150 +135,224 @@ const Projects = () => {
           left: 0,
           width: '100vw',
           zIndex: 1000,
-          padding: '15px 20px 20px 20px',
+          padding: window.innerWidth > 768 ? '20px 32px' : '15px 20px',
           boxSizing: 'border-box',
           background: 'rgba(0, 0, 0, 0.95)',
           borderBottom: '1px solid rgba(255, 255, 255, 0.2)',
         }}
       >
-        {/* Top Row - Logo and Hamburger */}
-        <div
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            width: '100%',
-            marginBottom: '15px',
-          }}
-        >
-          {/* Logo */}
-          <Link
-            to='/'
-            style={{
-              color: '#fff',
-              fontWeight: '300',
-              fontSize: '1.5rem',
-              letterSpacing: '1px',
-              fontFamily: 'Montserrat, sans-serif',
-              textDecoration: 'none',
-            }}
-          >
-            EbruLoria
-          </Link>
-
-          {/* Hamburger Menu */}
-          <button
-            onClick={() => setMenuOpen(true)}
-            style={{
-              background: 'transparent',
-              border: 'none',
-              color: '#fff',
-              fontSize: '1.2rem',
-              cursor: 'pointer',
-              padding: '5px',
-              display: 'flex',
-              flexDirection: 'column',
-              gap: '3px',
-              alignItems: 'center',
-              justifyContent: 'center',
-              width: '25px',
-              height: '20px',
-            }}
-          >
-            <div
-              style={{
-                width: '18px',
-                height: '2px',
-                background: '#fff',
-                borderRadius: '1px',
-              }}
-            ></div>
-            <div
-              style={{
-                width: '18px',
-                height: '2px',
-                background: '#fff',
-                borderRadius: '1px',
-              }}
-            ></div>
-            <div
-              style={{
-                width: '18px',
-                height: '2px',
-                background: '#fff',
-                borderRadius: '1px',
-              }}
-            ></div>
-          </button>
-        </div>
-
-        {/* Bottom Row - Search Bar */}
-        <div
-          style={{
-            width: '100%',
-            display: 'flex',
-            justifyContent: 'center',
-          }}
-        >
-          <div
+        {window.innerWidth > 768 ? (
+          // Desktop Header - Simple layout
+          <nav
             style={{
               display: 'flex',
               alignItems: 'center',
-              background: 'rgba(255, 255, 255, 0.1)',
-              border: '2px solid rgba(255, 255, 255, 0.3)',
-              borderRadius: '25px',
-              padding: '10px 15px',
+              justifyContent: 'space-between',
               width: '100%',
-              maxWidth: '300px',
-              transition: 'border-color 0.2s ease',
-            }}
-            onFocus={() => {
-              // Add focus styles if needed
             }}
           >
-            <span
+            {/* Logo Only */}
+            <Link
+              to='/'
               style={{
-                color: 'rgba(255, 255, 255, 0.7)',
-                fontSize: '1rem',
-                marginRight: '10px',
+                color: '#fff',
+                fontWeight: '300',
+                fontSize: '1.8rem',
+                letterSpacing: '2px',
+                fontFamily: 'Montserrat, sans-serif',
+                textDecoration: 'none',
               }}
             >
-              🔍
-            </span>
-            <input
-              type='text'
-              value={searchValue}
-              onChange={(e) => setSearchValue(e.target.value)}
-              placeholder='Proje ara...'
+              EbruLoria
+            </Link>
+
+            {/* Desktop Search Bar */}
+            <div
               style={{
-                background: 'transparent',
-                border: 'none',
-                outline: 'none',
-                color: '#fff',
-                fontSize: '0.9rem',
-                width: '100%',
-                fontFamily: 'Montserrat, sans-serif',
+                display: 'flex',
+                alignItems: 'center',
+                background: 'rgba(255, 255, 255, 0.1)',
+                border: '2px solid rgba(255, 255, 255, 0.3)',
+                borderRadius: '25px',
+                padding: '0.5rem 1rem',
+                minWidth: '400px',
+                transition: 'all 0.2s ease',
               }}
-            />
-            {searchValue && (
-              <button
-                onClick={() => setSearchValue('')}
+            >
+              <span
+                style={{
+                  color: 'rgba(255, 255, 255, 0.7)',
+                  fontSize: '1.1rem',
+                  marginRight: '0.5rem',
+                }}
+              >
+                🔍
+              </span>
+              <input
+                type='text'
+                value={searchValue}
+                onChange={(e) => setSearchValue(e.target.value)}
+                placeholder='Proje ara...'
                 style={{
                   background: 'transparent',
                   border: 'none',
-                  color: 'rgba(255, 255, 255, 0.7)',
-                  cursor: 'pointer',
+                  outline: 'none',
+                  color: '#fff',
                   fontSize: '0.9rem',
-                  padding: 0,
-                  marginLeft: '8px',
-                  minWidth: '20px',
+                  width: '100%',
+                  fontFamily: 'Montserrat, sans-serif',
+                }}
+              />
+              {searchValue && (
+                <button
+                  onClick={() => setSearchValue('')}
+                  style={{
+                    background: 'transparent',
+                    border: 'none',
+                    color: 'rgba(255, 255, 255, 0.7)',
+                    cursor: 'pointer',
+                    fontSize: '1rem',
+                    padding: 0,
+                    marginLeft: '0.5rem',
+                  }}
+                >
+                  ✕
+                </button>
+              )}
+            </div>
+          </nav>
+        ) : (
+          // Mobile Header - Fixed Layout
+          <div style={{ width: '100%' }}>
+            {/* Single Row - Logo, Search, and Hamburger */}
+            <div
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                width: '100%',
+                gap: '15px',
+              }}
+            >
+              {/* Logo */}
+              <Link
+                to='/'
+                style={{
+                  color: '#fff',
+                  fontWeight: '300',
+                  fontSize: '1.4rem',
+                  letterSpacing: '1px',
+                  fontFamily: 'Montserrat, sans-serif',
+                  textDecoration: 'none',
+                  flexShrink: 0,
                 }}
               >
-                ✕
+                EbruLoria
+              </Link>
+
+              {/* Mobile Search Bar */}
+              <div
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  background: 'rgba(255, 255, 255, 0.1)',
+                  border: '2px solid rgba(255, 255, 255, 0.3)',
+                  borderRadius: '20px',
+                  padding: '8px 12px',
+                  flex: 1,
+                  maxWidth: '200px',
+                  transition: 'border-color 0.2s ease',
+                }}
+              >
+                <span
+                  style={{
+                    color: 'rgba(255, 255, 255, 0.7)',
+                    fontSize: '0.9rem',
+                    marginRight: '8px',
+                  }}
+                >
+                  🔍
+                </span>
+                <input
+                  type='text'
+                  value={searchValue}
+                  onChange={(e) => setSearchValue(e.target.value)}
+                  placeholder='Proje ara...'
+                  style={{
+                    background: 'transparent',
+                    border: 'none',
+                    outline: 'none',
+                    color: '#fff',
+                    fontSize: '0.8rem',
+                    width: '100%',
+                    fontFamily: 'Montserrat, sans-serif',
+                  }}
+                />
+                {searchValue && (
+                  <button
+                    onClick={() => setSearchValue('')}
+                    style={{
+                      background: 'transparent',
+                      border: 'none',
+                      color: 'rgba(255, 255, 255, 0.7)',
+                      cursor: 'pointer',
+                      fontSize: '0.8rem',
+                      padding: 0,
+                      marginLeft: '5px',
+                    }}
+                  >
+                    ✕
+                  </button>
+                )}
+              </div>
+
+              {/* Hamburger Menu */}
+              <button
+                onClick={() => setMenuOpen(true)}
+                style={{
+                  background: 'transparent',
+                  border: 'none',
+                  color: '#fff',
+                  cursor: 'pointer',
+                  padding: '5px',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: '3px',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  width: '25px',
+                  height: '20px',
+                  flexShrink: 0,
+                }}
+              >
+                <div
+                  style={{
+                    width: '18px',
+                    height: '2px',
+                    background: '#fff',
+                    borderRadius: '1px',
+                  }}
+                ></div>
+                <div
+                  style={{
+                    width: '18px',
+                    height: '2px',
+                    background: '#fff',
+                    borderRadius: '1px',
+                  }}
+                ></div>
+                <div
+                  style={{
+                    width: '18px',
+                    height: '2px',
+                    background: '#fff',
+                    borderRadius: '1px',
+                  }}
+                ></div>
               </button>
-            )}
+            </div>
           </div>
-        </div>
+        )}
       </header>
 
       {/* Slide Menu */}
@@ -335,7 +409,7 @@ const Projects = () => {
               ✕
             </button>
 
-            {/* Menu Items */}
+            {/* Menu Items - Only relevant links */}
             <nav
               style={{
                 display: 'flex',
@@ -343,35 +417,6 @@ const Projects = () => {
                 gap: '1.5rem',
               }}
             >
-              <Link
-                to='/'
-                onClick={() => setMenuOpen(false)}
-                style={{
-                  color: '#fff',
-                  textDecoration: 'none',
-                  fontSize: '1.1rem',
-                  fontFamily: 'Montserrat, sans-serif',
-                  padding: '0.5rem 0',
-                  borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
-                }}
-              >
-                Ana Sayfa
-              </Link>
-              <Link
-                to='/projects'
-                onClick={() => setMenuOpen(false)}
-                style={{
-                  color: '#fff',
-                  textDecoration: 'none',
-                  fontSize: '1.1rem',
-                  fontFamily: 'Montserrat, sans-serif',
-                  fontWeight: '500',
-                  padding: '0.5rem 0',
-                  borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
-                }}
-              >
-                Projeler
-              </Link>
               <Link
                 to='/about'
                 onClick={() => setMenuOpen(false)}
@@ -385,6 +430,62 @@ const Projects = () => {
                 }}
               >
                 Hakkımızda
+              </Link>
+              <Link
+                to='/discoveries'
+                onClick={() => setMenuOpen(false)}
+                style={{
+                  color: '#fff',
+                  textDecoration: 'none',
+                  fontSize: '1.1rem',
+                  fontFamily: 'Montserrat, sans-serif',
+                  padding: '0.5rem 0',
+                  borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
+                }}
+              >
+                EbruLoria Keşifleri
+              </Link>
+              <Link
+                to='/housing'
+                onClick={() => setMenuOpen(false)}
+                style={{
+                  color: '#fff',
+                  textDecoration: 'none',
+                  fontSize: '1.1rem',
+                  fontFamily: 'Montserrat, sans-serif',
+                  padding: '0.5rem 0',
+                  borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
+                }}
+              >
+                EbruLoria Konut
+              </Link>
+              <Link
+                to='/news'
+                onClick={() => setMenuOpen(false)}
+                style={{
+                  color: '#fff',
+                  textDecoration: 'none',
+                  fontSize: '1.1rem',
+                  fontFamily: 'Montserrat, sans-serif',
+                  padding: '0.5rem 0',
+                  borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
+                }}
+              >
+                Haberler
+              </Link>
+              <Link
+                to='/offices'
+                onClick={() => setMenuOpen(false)}
+                style={{
+                  color: '#fff',
+                  textDecoration: 'none',
+                  fontSize: '1.1rem',
+                  fontFamily: 'Montserrat, sans-serif',
+                  padding: '0.5rem 0',
+                  borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
+                }}
+              >
+                Satış Ofisleri
               </Link>
               <Link
                 to='/contact'
@@ -405,10 +506,10 @@ const Projects = () => {
         </>
       )}
 
-      {/* Main Content - Adjusted padding for new header height */}
+      {/* Main Content - Adjusted padding */}
       <main
         style={{
-          paddingTop: '100px', // Increased to accommodate taller header
+          paddingTop: '80px',
           width: '100vw',
           background: '#f8f8f8',
           minHeight: '100vh',
@@ -418,7 +519,10 @@ const Projects = () => {
         {/* Page Title Section */}
         <section
           style={{
-            padding: '40px 20px 30px 20px',
+            padding:
+              window.innerWidth > 768
+                ? '60px 48px 40px 48px'
+                : '40px 20px 30px 20px',
             textAlign: 'center',
             background: '#fff',
           }}
@@ -426,7 +530,7 @@ const Projects = () => {
           <h1
             style={{
               color: '#333',
-              fontSize: '2.2rem',
+              fontSize: window.innerWidth > 768 ? '3rem' : '2.2rem',
               fontWeight: '300',
               margin: '0 0 1rem 0',
               fontFamily: 'Montserrat, sans-serif',
@@ -439,8 +543,8 @@ const Projects = () => {
           <p
             style={{
               color: '#666',
-              fontSize: '1rem',
-              maxWidth: '300px',
+              fontSize: window.innerWidth > 768 ? '1.2rem' : '1rem',
+              maxWidth: window.innerWidth > 768 ? '600px' : '300px',
               margin: '0 auto',
               lineHeight: 1.5,
               fontFamily: 'Montserrat, sans-serif',
@@ -448,20 +552,29 @@ const Projects = () => {
           >
             {searchValue
               ? `"${searchValue}" için ${filteredProjects.length} sonuç`
+              : window.innerWidth > 768
+              ? "Türkiye'nin dört bir yanında hayata geçirdiğimiz kaliteli yaşam alanları"
               : 'Kaliteli yaşam alanlarımızı keşfedin'}
           </p>
         </section>
 
-        {/* Mobile Projects Grid */}
-        <section style={{ padding: '20px' }}>
+        {/* Projects Grid - Responsive */}
+        <section
+          style={{ padding: window.innerWidth > 768 ? '40px 48px' : '20px' }}
+        >
           <div
             style={{
-              display: 'flex',
-              flexDirection: 'column',
-              gap: '20px',
-              maxWidth: '400px',
+              width: window.innerWidth > 768 ? '90vw' : '100%',
+              maxWidth: window.innerWidth > 768 ? 'none' : '400px',
               margin: '0 auto',
+              display: 'flex',
+              flexDirection: window.innerWidth > 768 ? 'row' : 'column',
+              flexWrap: window.innerWidth > 768 ? 'wrap' : 'nowrap',
+              justifyContent:
+                window.innerWidth > 768 ? 'space-between' : 'center',
+              gap: window.innerWidth > 768 ? '2rem' : '20px',
             }}
+            className='projects-grid'
           >
             {filteredProjects.map((project, index) => (
               <Link
@@ -477,18 +590,46 @@ const Projects = () => {
                     boxShadow: '0 4px 15px rgba(0,0,0,0.1)',
                     transition: 'all 0.3s ease',
                     cursor: 'pointer',
+                    height: window.innerWidth > 768 ? '400px' : 'auto',
+                    width: window.innerWidth > 768 ? '30vw' : '90vw',
+                    maxWidth: window.innerWidth > 768 ? '400px' : 'none',
+                    minWidth: window.innerWidth > 768 ? '280px' : 'auto',
+                    position: 'relative',
+                    margin: window.innerWidth <= 768 ? '0 auto' : '0',
+                  }}
+                  className='project-card'
+                  onMouseEnter={(e) => {
+                    if (window.innerWidth > 768) {
+                      e.currentTarget.style.transform =
+                        'translateY(-10px) scale(1.02)'
+                      e.currentTarget.style.boxShadow =
+                        '0 20px 40px rgba(0,0,0,0.2)'
+                      e.currentTarget.style.zIndex = '10'
+                    }
+                  }}
+                  onMouseLeave={(e) => {
+                    if (window.innerWidth > 768) {
+                      e.currentTarget.style.transform = 'translateY(0) scale(1)'
+                      e.currentTarget.style.boxShadow =
+                        '0 4px 15px rgba(0,0,0,0.1)'
+                      e.currentTarget.style.zIndex = '1'
+                    }
                   }}
                   onTouchStart={(e) => {
-                    e.currentTarget.style.transform = 'scale(0.98)'
+                    if (window.innerWidth <= 768) {
+                      e.currentTarget.style.transform = 'scale(0.98)'
+                    }
                   }}
                   onTouchEnd={(e) => {
-                    e.currentTarget.style.transform = 'scale(1)'
+                    if (window.innerWidth <= 768) {
+                      e.currentTarget.style.transform = 'scale(1)'
+                    }
                   }}
                 >
                   {/* Project Image */}
                   <div
                     style={{
-                      height: '200px',
+                      height: window.innerWidth > 768 ? '280px' : '200px',
                       background: `linear-gradient(135deg, 
                         ${
                           index % 6 === 0
@@ -512,7 +653,7 @@ const Projects = () => {
                     <span
                       style={{
                         color: '#fff',
-                        fontSize: '1.5rem',
+                        fontSize: window.innerWidth > 768 ? '2rem' : '1.5rem',
                         fontFamily: 'Montserrat, sans-serif',
                         fontWeight: '300',
                         textAlign: 'center',
@@ -533,7 +674,8 @@ const Projects = () => {
                       <h3
                         style={{
                           color: '#fff',
-                          fontSize: '1.3rem',
+                          fontSize:
+                            window.innerWidth > 768 ? '1.8rem' : '1.3rem',
                           fontWeight: '600',
                           margin: 0,
                           fontFamily: 'Montserrat, sans-serif',
@@ -545,7 +687,7 @@ const Projects = () => {
                       <p
                         style={{
                           color: 'rgba(255, 255, 255, 0.9)',
-                          fontSize: '0.9rem',
+                          fontSize: window.innerWidth > 768 ? '1rem' : '0.9rem',
                           margin: '5px 0 0 0',
                           fontFamily: 'Montserrat, sans-serif',
                           textShadow: '0 1px 2px rgba(0,0,0,0.3)',
@@ -557,47 +699,143 @@ const Projects = () => {
                   </div>
 
                   {/* Project Info */}
-                  <div style={{ padding: '20px' }}>
+                  <div
+                    style={{
+                      padding: window.innerWidth > 768 ? '1.5rem' : '20px',
+                    }}
+                  >
                     <p
                       style={{
                         color: '#666',
                         fontSize: '0.95rem',
                         lineHeight: 1.4,
-                        margin: '0 0 15px 0',
+                        margin: window.innerWidth > 768 ? 0 : '0 0 15px 0',
                         fontFamily: 'Montserrat, sans-serif',
+                        textAlign: window.innerWidth > 768 ? 'center' : 'left',
                       }}
                     >
                       {project.description}
                     </p>
 
-                    {/* View Details Button */}
+                    {/* Mobile View Details Button */}
+                    {window.innerWidth <= 768 && (
+                      <div
+                        style={{
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'space-between',
+                        }}
+                      >
+                        <span
+                          style={{
+                            color: '#333',
+                            fontSize: '0.9rem',
+                            fontFamily: 'Montserrat, sans-serif',
+                            fontWeight: '500',
+                          }}
+                        >
+                          Detayları Gör
+                        </span>
+                        <span
+                          style={{
+                            color: '#333',
+                            fontSize: '1.2rem',
+                          }}
+                        >
+                          →
+                        </span>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Desktop Hover Overlay */}
+                  {window.innerWidth > 768 && (
                     <div
                       style={{
+                        position: 'absolute',
+                        top: 0,
+                        left: 0,
+                        right: 0,
+                        bottom: 0,
+                        background: 'rgba(0, 0, 0, 0.8)',
                         display: 'flex',
                         alignItems: 'center',
-                        justifyContent: 'space-between',
+                        justifyContent: 'center',
+                        opacity: 0,
+                        transition: 'opacity 0.3s ease',
+                        borderRadius: '15px',
+                      }}
+                      className='project-overlay'
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.opacity = '1'
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.opacity = '0'
                       }}
                     >
-                      <span
+                      <div
                         style={{
-                          color: '#333',
-                          fontSize: '0.9rem',
-                          fontFamily: 'Montserrat, sans-serif',
-                          fontWeight: '500',
+                          textAlign: 'center',
+                          color: '#fff',
                         }}
                       >
-                        Detayları Gör
-                      </span>
-                      <span
-                        style={{
-                          color: '#333',
-                          fontSize: '1.2rem',
-                        }}
-                      >
-                        →
-                      </span>
+                        <h3
+                          style={{
+                            fontSize: '2rem',
+                            fontWeight: '600',
+                            margin: '0 0 1rem 0',
+                            fontFamily: 'Montserrat, sans-serif',
+                          }}
+                        >
+                          {project.title}
+                        </h3>
+                        <p
+                          style={{
+                            fontSize: '1.2rem',
+                            margin: '0 0 1rem 0',
+                            fontFamily: 'Montserrat, sans-serif',
+                            opacity: 0.9,
+                          }}
+                        >
+                          {project.location}
+                        </p>
+                        <p
+                          style={{
+                            fontSize: '1rem',
+                            margin: '0 0 2rem 0',
+                            fontFamily: 'Montserrat, sans-serif',
+                            opacity: 0.8,
+                          }}
+                        >
+                          {project.description}
+                        </p>
+                        <button
+                          style={{
+                            padding: '0.8rem 2rem',
+                            background: 'transparent',
+                            color: '#fff',
+                            border: '2px solid #fff',
+                            borderRadius: '25px',
+                            fontSize: '1rem',
+                            fontFamily: 'Montserrat, sans-serif',
+                            fontWeight: '500',
+                            cursor: 'pointer',
+                            transition: 'all 0.2s ease',
+                          }}
+                          onMouseEnter={(e) => {
+                            e.currentTarget.style.background = '#fff'
+                            e.currentTarget.style.color = '#333'
+                          }}
+                          onMouseLeave={(e) => {
+                            e.currentTarget.style.background = 'transparent'
+                            e.currentTarget.style.color = '#fff'
+                          }}
+                        >
+                          Detayları Gör
+                        </button>
+                      </div>
                     </div>
-                  </div>
+                  )}
                 </div>
               </Link>
             ))}

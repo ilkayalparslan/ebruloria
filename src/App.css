@@ -436,21 +436,30 @@ body {
     margin-bottom: 2rem !important; /* Ensure space at bottom */
   }
 
-  /* Projects Page Mobile Styles - Mobile First */
+  /* Projects Page Mobile Styles */
   .projects-grid {
-    grid-template-columns: 1fr !important;
+    display: flex !important;
+    flex-direction: column !important;
     gap: 20px !important;
     padding: 0 !important;
+    width: 100% !important;
+    max-width: 400px !important;
   }
 
   .project-card {
-    margin: 0 !important;
+    margin: 0 auto !important;
     height: auto !important;
+    width: 90vw !important;
+    max-width: 350px !important;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1) !important;
   }
 
   .project-card:active {
     transform: scale(0.98) !important;
+  }
+
+  .project-overlay {
+    display: none !important;
   }
 
   /* Projects Page Mobile Header - Stacked Layout */
@@ -546,25 +555,47 @@ body {
 /* Tablet Responsive Styles */
 @media (max-width: 1024px) and (min-width: 769px) {
   .projects-grid {
-    grid-template-columns: repeat(2, 1fr) !important;
-    gap: 1.5rem !important;
+    width: 95vw !important;
+  }
+
+  .project-card {
+    width: 45vw !important;
+    min-width: 300px !important;
   }
 }
 
 /* Desktop Styles for Projects */
 @media (min-width: 769px) {
   .projects-grid {
-    grid-template-columns: repeat(3, 1fr) !important;
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
+    justify-content: space-between !important;
     gap: 2rem !important;
+    width: 90vw !important;
+    margin: 0 auto !important;
   }
 
   .project-card {
     height: 400px !important;
+    width: 30vw !important;
+    max-width: 400px !important;
+    min-width: 280px !important;
+    display: block !important;
+    margin: 0 !important;
   }
 
   .project-card:hover {
     transform: translateY(-10px) scale(1.02) !important;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2) !important;
+  }
+
+  .project-overlay {
+    opacity: 0 !important;
+  }
+
+  .project-card:hover .project-overlay {
+    opacity: 1 !important;
   }
 
   .projects-desktop-header {
