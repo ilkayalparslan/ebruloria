@@ -12,8 +12,28 @@ function App() {
   return (
     <div className='App'>
       <Routes>
-        <Route path='/' element={<><Navigation /><Home /><Footer /><FloatingButtons /></>} />
-        <Route path='/about' element={<><Navigation /><About /><Footer /><FloatingButtons /></>} />
+        <Route
+          path='/'
+          element={
+            <>
+              <Navigation />
+              <Home />
+              <Footer />
+              <FloatingButtons />
+            </>
+          }
+        />
+        <Route
+          path='/about'
+          element={
+            <>
+              <Navigation />
+              <About />
+              <Footer />
+              <FloatingButtons />
+            </>
+          }
+        />
         <Route path='/hotels' element={<Hotels />} />
       </Routes>
     </div>
